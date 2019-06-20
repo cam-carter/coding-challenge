@@ -3,14 +3,6 @@ import TaskContext from './TaskContext'
 import { taskReducer, COMPLETE_TASK, RECEIVE_TASKS } from './reducers'
 
 const GlobalState = (props) => {
-  const [state, dispatch] = useReducer(taskReducer, { tasks: [] })
-
-  const receiveTasks = (tasks) => {
-    setTimeout(() => {
-      dispatch({ type: RECEIVE_TASKS, tasks: tasks })
-    }, 500)
-  }
-
   useEffect(() => {
     fetch('http://localhost:3000/data.json')
       .then((response) => response.json())
@@ -18,6 +10,14 @@ const GlobalState = (props) => {
         receiveTasks(response)
       })
   }, [])
+
+  const [state, dispatch] = useReducer(taskReducer, { tasks: [] })
+
+  const receiveTasks = (tasks) => {
+    setTimeout(() => {
+      dispatch({ type: RECEIVE_TASKS, tasks: tasks })
+    }, 500)
+  }
 
   const completeTask = (task) => {
     setTimeout(() => {

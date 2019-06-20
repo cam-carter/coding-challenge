@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import _ from 'lodash'
 
 const TaskCheckbox = ({task, completeTask}) => {
@@ -14,11 +14,9 @@ const TaskCheckbox = ({task, completeTask}) => {
     }
   }
 
-  const [checkboxSrc, setCheckbox] = useState(`${process.env.PUBLIC_URL}/${taskStatus()}.svg`)
-  useEffect(() => {
-    setCheckbox(`${process.env.PUBLIC_URL}/${taskStatus()}.svg`)
-  })
-  function handleCheckboxClick(e) {
+  const checkboxSrc = `${process.env.PUBLIC_URL}/${taskStatus()}.svg`
+
+  function handleCheckboxClick(_e) {
     completeTask(task)
   }
 
