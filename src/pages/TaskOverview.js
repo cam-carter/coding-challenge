@@ -7,23 +7,21 @@ const TaskOverview = () => {
   return (
     <TaskContext.Consumer>
       {context => (
-        <React.Fragment>
-          <div className="container">
-            <h1 className="is-size-1">Things To Do</h1>
-            <hr/>
-            {
-              _.chain(context.tasks)
-               .groupBy('group')
-               .toPairs()
-               .map(([group, tasks]) => {
-                 return (
-                   <TaskGroup key={group} group={group} tasks={tasks} />
-                 )
-               })
-               .value()
-            }
-          </div>
-        </React.Fragment>
+        <div className="container">
+          <h1 className="is-size-1">Things To Do</h1>
+          <hr/>
+          {
+            _.chain(context.tasks)
+             .groupBy('group')
+             .toPairs()
+             .map(([group, tasks]) => {
+               return (
+                 <TaskGroup key={group} group={group} tasks={tasks} />
+               )
+             })
+             .value()
+          }
+        </div>
       )}
     </TaskContext.Consumer>
   )
